@@ -1,0 +1,47 @@
+{
+	"name": "my-app",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"test": "playwright test",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write ."
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.28.1",
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/adapter-node": "^1.2.3",
+		"@sveltejs/kit": "^1.5.0",
+		"@types/node": "^18.15.5",
+		"@typescript-eslint/eslint-plugin": "^5.45.0",
+		"@typescript-eslint/parser": "^5.45.0",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"prettier": "^2.8.0",
+		"prettier-plugin-svelte": "^2.8.1",
+		"svelte": "^3.54.0",
+		"svelte-check": "^3.1.4",
+		"tslib": "^2.5.0",
+		"typescript": "^5.0.2",
+		"vite": "^4.2.0"
+	},
+	"type": "module",
+	"dependencies": {
+		"@uppy/core": "^3.1.1",
+		"@uppy/dashboard": "^3.3.1",
+		"@uppy/svelte": "^3.0.1",
+		"@uppy/xhr-upload": "^3.1.0",
+		"carbon-components-svelte": "^0.73.4",
+		"node-fetch": "^3.3.1",
+		"oidc-client-ts": "^2.2.2",
+		"svelte-preprocess": "^5.0.3",
+		"svelte2tsx": "^0.6.10",
+		"uppy": "^3.6.1"
+	}
+}
