@@ -1,10 +1,11 @@
-import { UserManager, UserManagerSettings } from 'oidc-client-ts';
-
+import { UserManager } from 'oidc-client-ts';
+import type { UserManagerSettings } from 'oidc-client-ts';
+import { base } from '$app/paths';
 const userManagerConfig: UserManagerSettings = {
   // Fill in the OIDC client configuration
   authority: "https://keycloak.fabiv.pw/realms/fabiv.pw",
   client_id: "test_chatgpt",
-  redirect_uri: "/signin-callback",
+  redirect_uri: `${base}/signin-callback`,
 };
 
 const userManager = new UserManager(userManagerConfig);
