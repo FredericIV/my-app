@@ -1,6 +1,6 @@
 import { createDirectUploadSignature } from '$lib/cloudflare';
 
-export async function post(request) {
+export async function POST(request) {
   const user = request.locals.user;
 
   if (!user) {
