@@ -1,23 +1,14 @@
 <script lang="ts">
+  import type { User } from 'oidc-client-ts';
   import VideoUploader from '../components/VideoUploader.svelte';
-  /** @type {import('./$types').PageData} */
-  import { page } from '$app/stores';
   import {
-    Header,
-    SideNav,
-    SideNavItems,
-    SideNavLink,
-    SideNavDivider,
-    SkipToContent,
-    Content,
     Grid,
     Row,
     Column,
-    Button,
   } from "carbon-components-svelte";
   import { onMount } from 'svelte';
   import { getUser } from '$lib/auth';
-  let user;
+  let user: User | null;
   onMount(async () => {
     user = await getUser();
   });
@@ -26,7 +17,7 @@
   <Row>
     <Column>
       {#if user}
-        <h1>Welcome, {user.name}!</h1>
+        <h1>Welcome, {user.profile.name}!</h1>
         <VideoUploader />
         
       {:else}

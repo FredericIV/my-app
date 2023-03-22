@@ -35,10 +35,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@uppy/core": "^3.1.1",
-		"@uppy/dashboard": "^3.3.1",
-		"@uppy/svelte": "^3.0.1",
-		"@uppy/xhr-upload": "^3.1.0",
 		"carbon-components-svelte": "^0.73.4",
 		"node-fetch": "^3.3.1",
 		"oidc-client-ts": "^2.2.2",

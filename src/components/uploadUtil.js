@@ -1,13 +1,12 @@
 import { Upload } from "tus-js-client";
-
-const TUS_ENDPOINT = "https://api.cloudflare.com/client/v4/accounts/ab21e0d3a64b15eb8cd9ecbd29154427/stream"; // Replace this with your tus server endpoint
+import {PUBLIC_TUS_ENDPOINT, PUBLIC_CLOUDFLARE_API_TOKEN} from '$env/static/public';
 
 export async function createTusUpload(file) {
   return new Promise((resolve, reject) => {
     const upload = new Upload(file, {
-      endpoint: TUS_ENDPOINT,
+      endpoint: PUBLIC_TUS_ENDPOINT,
       headers: {
-        Authorization: "Bearer " + "sbmJS40AbXB8PwZi9heUiMqnPUHelLTVg1_IfJX3",
+        Authorization: "Bearer " + PUBLIC_CLOUDFLARE_API_TOKEN,
       },
       retryDelays: [0, 1000, 3000, 5000],
       metadata: {

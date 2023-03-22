@@ -1,11 +1,12 @@
 import fetch from 'node-fetch';
+import {CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN} from '$env/static/private';
 
 export async function createDirectUploadSignature() {
-  const response = await fetch(`https://api.cloudflare.com/client/v4/accounts/${process.env.CLOUDFLARE_ACCOUNT_ID}/stream`, {
+  const response = await fetch(`https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/stream`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
+      'Authorization': `bearer ${CLOUDFLARE_API_TOKEN}`,
       },
     body: JSON.stringify({
       'direct_user': true
