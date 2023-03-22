@@ -1,19 +1,37 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { login, logout, getUser } from '$lib/auth';
-    import VideoUploader from '../components/VideoUploader.svelte';
-    import { Button } from 'carbon-components-svelte';
-  
-    let user;
-  
-    onMount(async () => {
-      user = await getUser();
-    });
+  import VideoUploader from '../components/VideoUploader.svelte';
+  /** @type {import('./$types').PageData} */
+  import { page } from '$app/stores';
+  import {
+    Header,
+    SideNav,
+    SideNavItems,
+    SideNavLink,
+    SideNavDivider,
+    SkipToContent,
+    Content,
+    Grid,
+    Row,
+    Column,
+    Button,
+  } from "carbon-components-svelte";
+  import { onMount } from 'svelte';
+  import { getUser } from '$lib/auth';
+  let user;
+  onMount(async () => {
+    user = await getUser();
+  });
 </script>
-  
-  {#if user}
-    <Button on:click={logout}>Logout</Button>
-    <VideoUploader />
-  {:else}
-    <Button on:click={login}>Login</Button>
-  {/if}
+<Grid>
+  <Row>
+    <Column>
+      {#if user}
+        <h1>Welcome, {user.name}!</h1>
+        <VideoUploader />
+        
+      {:else}
+        <h1>Welcome. Please sign in.</h1>
+      {/if}
+    </Column>
+  </Row>
+</Grid>
