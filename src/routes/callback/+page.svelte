@@ -6,7 +6,7 @@
     onMount(async () => {
       try {
         await callback();
-        goto('/', { replaceState: true });
+        goto('/', { replaceState: false });
       } catch (error) {
         console.error('Callback error:', error);
         // Handle error, e.g., display an error message or redirect to an error page

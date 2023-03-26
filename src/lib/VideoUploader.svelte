@@ -1,6 +1,6 @@
 <script>
-    import { FileUploader, InlineNotification, Tile, Button } from "carbon-components-svelte";
-    import { createTusUpload } from "./uploadUtil.js";
+    import { FileUploader, InlineNotification, Tile, Button, ProgressBar } from "carbon-components-svelte";
+    import { createTusUpload, TusUploaded, TusTotal } from "$lib/uploadUtil.js";
 
 	/** @type {readonly File[] | any[]} */
     $: files = [];
@@ -15,7 +15,10 @@
         status = "complete";
     }
     function onChange() {
-        if (status == "complete") status = "edit";
+        if (status == "complete") {
+            status = "edit";
+            $TusUploaded = 0;
+        }
     }
 </script>
 <Tile>
@@ -28,6 +31,10 @@
         bind:status
         bind:files
         on:change="{onChange}"
+    />
+    <ProgressBar
+        value={$TusUploaded}
+        max={$TusTotal}
     />
     <Button on:click="{onUpload}" disabled={!files.length||status=="complete"}>Upload</Button>
 </Tile>

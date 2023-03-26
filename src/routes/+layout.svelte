@@ -12,6 +12,7 @@
     SkipToContent,
     Content,
   } from "carbon-components-svelte";
+  /** @type {import('oidc-client-ts').User | null} */
   let user;
   onMount(async () => {
     user = await getUser();
