@@ -38,6 +38,9 @@
 		"@sveltejs/adapter-cloudflare": "^2.2.0",
 		"carbon-components-svelte": "^0.73.4",
 		"oidc-client-ts": "^2.2.2",
+		"postcss": "^8.4.21",
+		"postcss-import": "^15.1.0",
+		"tus-js-client": "^3.1.0",
 		"wrangler": "^2.13.0"
 	}
 }

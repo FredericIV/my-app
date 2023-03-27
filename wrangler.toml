@@ -1,0 +1,11 @@
+name = "my-worker"
+main = "src/app.d.ts"
+compatibility_date = "2023-03-27"
+[env.production]
+kv_namespaces = [
+    { binding = "kate_project", id = "052a8d2847f547e8a1ccfd4ee37421e1" }
+]
+[env.staging]
+kv_namespaces = [
+    { binding = "kate_project", preview_id = "74c7fa5833a64a4283d4b4ae7c1b6911" }
+]
