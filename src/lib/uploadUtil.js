@@ -11,8 +11,8 @@ export async function createTusUpload(file) {
       metadata: {
         name: file.name,
         filetype: file.type,
-        requiresignedurls: true,
-        maxDurationSeconds: 7200,
+        requiresignedurls: 'true',
+        maxDurationSeconds: '7200',
       },
       chunkSize: 209715200,
       onError: (error) => {

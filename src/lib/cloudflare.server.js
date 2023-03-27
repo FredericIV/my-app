@@ -12,7 +12,9 @@ export async function createDirectUploadSignature() {
       'direct_user': true
       })
     });
-      
+    
+    //The type of result is object
+    /** @type { { success: boolean, result: { signature: string, policy: string, key: string, } } } */
     const result = await response.json();
       
     if (!result.success) {
