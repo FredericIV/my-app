@@ -33,9 +33,9 @@
   <SideNavItems>
     {#if user}
       <SideNavLink text="Hi {user.profile.given_name}!" />
-      <SideNavLink on:click={logout} text="Logout" />
+      <SideNavLink on:click={logout} href="" text="Logout" />
     {:else}
-      <SideNavLink on:click={login} text="Login" />
+      <SideNavLink on:click={login} href="" text="Login" />
     {/if}
     <SideNavDivider />
     <SideNavLink href="/" text="Home" />
