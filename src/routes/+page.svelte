@@ -20,7 +20,7 @@
       {#if user}
         <h1>Welcome, {user.profile.given_name}!</h1>
         <Content>
-          <Link href="/submitter/upload">
+          <Link href="/submitter">
             Click here to upload a video.
           </Link>
         </Content>

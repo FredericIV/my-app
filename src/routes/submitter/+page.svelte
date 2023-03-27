@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
+  import { getContext, setContext } from 'svelte';
   import {
     Grid,
     Row,
@@ -7,12 +7,13 @@
     ProgressIndicatorSkeleton,
     ProgressIndicator,
     ProgressStep,
+    Content,
   } from "carbon-components-svelte";
   import VideoUploader from '$lib/VideoUploader.svelte';
+	import { writable } from 'svelte/store';
 
   /** @type {SvelteStore}*/
   const user = getContext('user');
-  $: console.log($user)
   let index = 0;
   let track = {
     Upload: {
@@ -61,6 +62,7 @@
           <VideoUploader on:onComplete={progress}/>
         {:else if index === 1}
           <h1>Metadata</h1>
+          <Content>{$streamMediaId}</Content>
         {:else if index === 2}
           <h1>Review</h1>
         {/if}
