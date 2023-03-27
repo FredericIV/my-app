@@ -1,6 +1,5 @@
 <script>
   import "carbon-components-svelte/css/all.css";
-  import "uppy/dist/uppy.min.css";
   import { onMount } from 'svelte';
   import { login, logout, getUser } from '$lib/auth';
   import {
