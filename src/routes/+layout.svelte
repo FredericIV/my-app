@@ -19,6 +19,10 @@
   });
   let isSideNavOpen = false;
 </script>
+<svelte:head>
+  <title>KateProject</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</svelte:head>
 <Header company="Kate" platformName="Et al." bind:isSideNavOpen>
   <svelte:fragment slot="skip-to-content">
     <SkipToContent />

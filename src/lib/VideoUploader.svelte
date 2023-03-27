@@ -1,11 +1,23 @@
 <script>
-    import { FileUploader, InlineNotification, Tile, Button, ProgressBar } from "carbon-components-svelte";
-    import { createTusUpload, TusUploaded, TusTotal } from "$lib/uploadUtil.js";
+    import { createEventDispatcher } from 'svelte';
+    import {
+        FileUploader,
+        Tile,
+        Button,
+        ButtonSet,
+        ProgressBar 
+    } from "carbon-components-svelte";
+
+    import {
+        createTusUpload,
+        TusUploaded,
+        TusTotal
+    } from "$lib/uploadUtil.js";
 
 	/** @type {readonly File[] | any[]} */
-    $: files = [];
+    let files = [];
     /** @type {"edit" | "uploading" | "complete"} */
-    $: status = "edit"
+    export let status = "edit"
     let fileUploader;
 
     async function onUpload() {
@@ -20,6 +32,12 @@
             $TusUploaded = 0;
         }
     }
+    const dispatch = createEventDispatcher();
+    function onComplete() {
+        console.log("onComplete");
+        dispatch('onComplete');
+    }
+    $: helperText = status ==="complete"?"Done":$TusUploaded > 0 ? ($TusUploaded/1024/1024).toFixed(1) + "MB of " + ($TusTotal/1024/1024).toFixed(1) + "MB" : "Select a file and press Upload to start";
 </script>
 <Tile>
     <FileUploader
@@ -33,15 +51,15 @@
         on:change="{onChange}"
     />
     <ProgressBar
+        labelText="Upload progress"
         value={$TusUploaded}
         max={$TusTotal}
+        status={status=="complete"?"finished":"active"}
+        {helperText}
     />
-    <Button on:click="{onUpload}" disabled={!files.length||status=="complete"}>Upload</Button>
+    
 </Tile>
-{#if status == "complete"}
-    <InlineNotification
-        kind="success"
-        title="Success"
-        subtitle="Your video has been uploaded."
-    />
-{/if}
+<ButtonSet>
+    <Button kind="secondary" on:click="{onUpload}" disabled={!files.length||status!="edit"}>Upload</Button>
+    <Button on:click="{onComplete}" disabled={status!="complete"}>Continue</Button>
+</ButtonSet>
