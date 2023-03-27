@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext, setContext } from 'svelte';
+  import { getContext } from 'svelte';
   import {
     Grid,
     Row,
@@ -10,7 +10,6 @@
     Content,
   } from "carbon-components-svelte";
   import VideoUploader from '$lib/VideoUploader.svelte';
-	import { writable } from 'svelte/store';
 
   /** @type {SvelteStore}*/
   const user = getContext('user');
@@ -62,7 +61,7 @@
           <VideoUploader on:onComplete={progress}/>
         {:else if index === 1}
           <h1>Metadata</h1>
-          <Content>{$streamMediaId}</Content>
+          <Content>"stream-media-id"</Content>
         {:else if index === 2}
           <h1>Review</h1>
         {/if}
