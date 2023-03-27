@@ -8,7 +8,6 @@
     Column,
     ProgressIndicator,
     ProgressStep,
-    Button,
   } from "carbon-components-svelte";
   import VideoUploader from '$lib/VideoUploader.svelte';
 
