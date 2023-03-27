@@ -1,16 +1,11 @@
 import { UserManager } from 'oidc-client-ts';
 import type { UserManagerSettings } from 'oidc-client-ts';
-//import { base } from '$app/paths';
 import { PUBLIC_OIDC_CALLBACK_URI, PUBLIC_OIDC_AUTHORITY, PUBLIC_OIDC_CLIENTID } from  '$env/static/public';
 
-//const temp = "http://localhost:4000"
 const userManagerConfig: UserManagerSettings = {
   authority: PUBLIC_OIDC_AUTHORITY,
   client_id: PUBLIC_OIDC_CLIENTID,
-  //redirect_uri: `${temp}/${base}/callback`,
   redirect_uri: PUBLIC_OIDC_CALLBACK_URI,
-  
-  
 };
 
 const userManager = new UserManager(userManagerConfig);
