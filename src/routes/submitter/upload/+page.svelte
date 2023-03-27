@@ -1,20 +1,18 @@
 <script lang="ts">
-  import type { User } from 'oidc-client-ts';
-  import { onMount } from 'svelte';
-  import { getUser } from '$lib/auth';
+  import { getContext } from 'svelte';
   import {
     Grid,
     Row,
     Column,
+    ProgressIndicatorSkeleton,
     ProgressIndicator,
     ProgressStep,
   } from "carbon-components-svelte";
   import VideoUploader from '$lib/VideoUploader.svelte';
 
-  let user: User | null;
-  onMount(async () => {
-    user = await getUser();
-  });
+  /** @type {SvelteStore}*/
+  const user = getContext('user');
+  $: console.log($user)
   let index = 0;
   let track = {
     Upload: {
@@ -52,8 +50,8 @@
 <Grid>
   <Row>
     <Column>
-      {#if user}
-        <h1>Welcome, {user.profile.name}!</h1>
+      {#if $user}
+        <h1>Welcome{", "+$user?.profile.given_name}!</h1>
         <ProgressIndicator bind:currentIndex={index} preventChangeOnClick={true}>
           <ProgressStep {...track.Upload}  />
           <ProgressStep {...track.Detail} />
@@ -67,7 +65,8 @@
           <h1>Review</h1>
         {/if}
       {:else}
-        <h1>Welcome. Please sign in.</h1>
+        <h1>Welcome</h1>
+        <ProgressIndicatorSkeleton count=3 />
       {/if}
     </Column>
   </Row>

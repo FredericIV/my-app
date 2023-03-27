@@ -1,6 +1,7 @@
 <script>
   import "carbon-components-svelte/css/all.css";
-  import { onMount } from 'svelte';
+  import { onMount, setContext } from 'svelte';
+  import { writable } from 'svelte/store';
   import { login, logout, getUser } from '$lib/auth';
   import {
     Header,
@@ -11,11 +12,11 @@
     SkipToContent,
     Content,
   } from "carbon-components-svelte";
-  /** @type {import('oidc-client-ts').User | null} */
-  let user;
+  const user = writable();
   onMount(async () => {
-    user = await getUser();
+    user.set(await getUser());
   });
+  setContext('user', user)
   let isSideNavOpen = false;
 </script>
 <svelte:head>
@@ -30,8 +31,8 @@
   
 <SideNav bind:isOpen={isSideNavOpen}>
   <SideNavItems>
-    {#if user}
-      <SideNavLink text="Hi {user.profile.given_name}!" />
+    {#if $user}
+      <SideNavLink text="{$user.profile.name}" />
       <SideNavLink on:click={logout} href="" text="Logout" />
     {:else}
       <SideNavLink on:click={login} href="" text="Login" />

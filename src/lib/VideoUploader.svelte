@@ -34,7 +34,6 @@
     }
     const dispatch = createEventDispatcher();
     function onComplete() {
-        console.log("onComplete");
         dispatch('onComplete');
     }
     $: helperText = status ==="complete"?"Done":$TusUploaded > 0 ? ($TusUploaded/1024/1024).toFixed(1) + "MB of " + ($TusTotal/1024/1024).toFixed(1) + "MB" : "Select a file and press Upload to start";

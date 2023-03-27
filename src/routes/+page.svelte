@@ -18,7 +18,7 @@
   <Row>
     <Column>
       {#if user}
-        <h1>Welcome, {user.profile.name}!</h1>
+        <h1>Welcome, {user.profile.given_name}!</h1>
         <Content>
           <Link href="/submitter/upload">
             Click here to upload a video.
@@ -26,7 +26,7 @@
         </Content>
         
       {:else}
-        <h1>Welcome. Please sign in.</h1>
+        <h1>Welcome, please sign in.</h1>
       {/if}
     </Column>
   </Row>

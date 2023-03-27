@@ -16,7 +16,6 @@ export async function createTusUpload(file) {
       },
       chunkSize: 209715200,
       onError: (error) => {
-        console.error("Failed because: " + error);
         reject(error);
       },
       onProgress: (bytesUploaded, bytesTotal) => {
@@ -24,19 +23,18 @@ export async function createTusUpload(file) {
         TusTotal.set(bytesTotal);
       },
       onSuccess: () => {
-        console.log("Download %s from %s", upload.file.name, upload.url);
-        console.log(upload);
         resolve(upload.url);
       },
+      onAfterResponse: function (req, res) {
+        if (res.getHeader('stream-media-id')){
+          console.log(res.getHeader('stream-media-id'));
+        }
+      }
     });
-
     upload.findPreviousUploads().then(function (previousUploads) {
-      // Found previous uploads so we select the first one.
       if (previousUploads.length) {
         upload.resumeFromPreviousUpload(previousUploads[0])
       }
-  
-      // Start the upload
       upload.start()
     })
   });
