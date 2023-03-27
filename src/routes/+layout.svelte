@@ -30,15 +30,17 @@
 </Header>
   
 <SideNav bind:isOpen={isSideNavOpen}>
-<SideNavItems>
-  {#if user}
-    <SideNavLink on:click={logout} text="Logout" />
-  {:else}
-    <SideNavLink on:click={login} text="Login" />
-  {/if}
-  <SideNavDivider />
-  <SideNavLink href="http://localhost:4000" text="Home" />
-</SideNavItems>
+  <SideNavItems>
+    {#if user}
+      <SideNavLink text="Hi {user.profile.given_name}!" />
+      <SideNavLink on:click={logout} text="Logout" />
+    {:else}
+      <SideNavLink on:click={login} text="Login" />
+    {/if}
+    <SideNavDivider />
+    <SideNavLink href="/" text="Home" />
+    <SideNavLink href="/upload" text="Upload" />
+  </SideNavItems>
 </SideNav>
 
 <Content>
