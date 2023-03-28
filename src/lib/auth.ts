@@ -1,11 +1,17 @@
 import { UserManager } from 'oidc-client-ts';
 import type { UserManagerSettings } from 'oidc-client-ts';
-import { PUBLIC_OIDC_CALLBACK_URI, PUBLIC_OIDC_AUTHORITY, PUBLIC_OIDC_CLIENTID } from  '$env/static/public';
-
+import {
+  PUBLIC_OIDC_CALLBACK_URI,
+  PUBLIC_OIDC_AUTHORITY,
+  PUBLIC_OIDC_CLIENTID,
+  PUBLIC_OIDC_HOST,
+} from  '$env/static/public';
 const userManagerConfig: UserManagerSettings = {
   authority: PUBLIC_OIDC_AUTHORITY,
   client_id: PUBLIC_OIDC_CLIENTID,
   redirect_uri: PUBLIC_OIDC_CALLBACK_URI,
+  post_logout_redirect_uri: PUBLIC_OIDC_HOST,
+  includeIdTokenInSilentSignout: true,
 };
 
 const userManager = new UserManager(userManagerConfig);
@@ -19,11 +25,11 @@ export async function logout() {
 }
 
 export async function getUser() {
-  const user = userManager.getUser();
-  userManager.storeUser(await user);
-  return user;
+  return userManager.getUser();
 }
 
 export async function callback() {
-  return userManager.signinRedirectCallback();
+  const user = userManager.signinRedirectCallback();
+  userManager.storeUser(await user);
+  return user;
 }
