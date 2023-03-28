@@ -39,7 +39,7 @@
     {/if}
     <SideNavDivider />
     <SideNavLink href="/" text="Home" />
-    <SideNavLink href="/submitter/upload" text="Upload" />
+    <SideNavLink href="/submitter" text="Upload" />
   </SideNavItems>
 </SideNav>
 
