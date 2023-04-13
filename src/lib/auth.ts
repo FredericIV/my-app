@@ -29,7 +29,5 @@ export async function getUser() {
 }
 
 export async function callback() {
-  const user = userManager.signinRedirectCallback();
-  userManager.storeUser(await user);
-  return user;
+  return userManager.signinRedirectCallback();
 }
